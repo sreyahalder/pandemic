@@ -1,10 +1,8 @@
 import numpy as np
 from enum import Enum
 import random
-
-class City(Enum):
-    ATLANTA = 0
-    # TODO: Add more cities here & build NetworkX graph
+import NetworkX as nx
+from world import City
     
 class Disease(Enum):
     BLACK = 0
@@ -16,7 +14,7 @@ class PandemicMDP:
     def __init__(self, n, k):
         self.n = n
         self.k = k
-        self.map = np.zeros((n, n))
+        self.map = nx.read_graphml('world.graphml')
         self.disease_counts = np.zeros((n), dtype=int)
         # TODO: add array for city colors
         self.research_stations = np.zeros((n), dtype=bool)
@@ -62,6 +60,7 @@ class PandemicMDP:
         self.outbreak_count += 1
 
     def step(self, action):
+        reward = 0
         if action == "MOVE":
             neighbors = self.map[self.current_location]
             self.current_location = np.random.choice(neighbors)
@@ -73,6 +72,7 @@ class PandemicMDP:
         elif action == "TREAT":
             if self.disease_counts[self.current_location] > 0:
                 self.disease_counts[self.current_location] -= 1
+                reward += 1
         elif action == "BUILD":
             if self.research_stations[self.current_location] == False and self.player_cards.count(self.current_location) > 0:
                 self.player_cards.remove(self.current_location)
@@ -86,9 +86,9 @@ class PandemicMDP:
                         del self.player_cards[i]
                     self.cure_status[color] = True
                     if all(self.cure_status.values()):
-                        return self.disease_counts, self.research_stations, self.current_location, self.cure_status, self.draw_pile, self.infect_pile, 10, True
+                        reward += 100 # game ends when all cured
                     else:
-                        return self.disease_counts, self.research_stations, self.current_location, self.cure_status, self.draw_pile, self.infect_pile, 0, False
+                        reward += 10
         else:
             raise ValueError("Invalid action")
 
@@ -98,14 +98,15 @@ class PandemicMDP:
             self.disease_counts[card] += 1
             if self.disease_counts[card] > 3:
                 self._outbreak(card)
-                return self.disease_counts, self.research_stations, self.current_location, self.cure_status, self.draw_pile, self.infect_pile, -50, True
+                reward -= 50
 
         # Draw two cards from DRAW_PILE
         for i in range(2):
             card = self.draw_pile.pop()
             # Check for epidemic
-            if card == "EPIDEMIC":
+            if card == -1:
                 self._epidemic()
+                reward -= 50
                 continue
             if len(self.player_cards) < 7:
                 self.player_cards.append(card)
@@ -115,5 +116,5 @@ class PandemicMDP:
                 for index in sorted(discard_indices, reverse=True):
                     del self.player_cards[index]
 
-        return self.disease_counts, self.research_stations, self.current_location, self.cure_status, self.draw_pile, self.infect_pile
+        return self.disease_counts, self.research_stations, self.current_location, self.cure_status, self.draw_pile, self.infect_pile, reward
 
