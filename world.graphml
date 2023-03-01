@@ -1,0 +1,819 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d9" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d8" for="node" attr.name="y" attr.type="double"/>
+<key id="d7" for="node" attr.name="x" attr.type="double"/>
+<key id="d6" for="node" attr.name="b" attr.type="long"/>
+<key id="d5" for="node" attr.name="g" attr.type="long"/>
+<key id="d4" for="node" attr.name="r" attr.type="long"/>
+<key id="d3" for="node" attr.name="size" attr.type="double"/>
+<key id="d2" for="node" attr.name="Degree" attr.type="long"/>
+<key id="d1" for="node" attr.name="Eigenvector Centrality" attr.type="double"/>
+<key id="d0" for="node" attr.name="label" attr.type="string"/>
+<graph edgedefault="undirected"><node id="San Francisco">
+  <data key="d0">San Francisco</data>
+  <data key="d1">0.4266021110134155</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-959.0986</data>
+  <data key="d8">974.0585</data>
+</node>
+<node id="Chicago">
+  <data key="d0">Chicago</data>
+  <data key="d1">0.3899046083714591</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-826.1213</data>
+  <data key="d8">1027.2494</data>
+</node>
+<node id="Montréal">
+  <data key="d0">Montréal</data>
+  <data key="d1">0.2381393125884875</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-719.7395</data>
+  <data key="d8">1030.5739</data>
+</node>
+<node id="New York">
+  <data key="d0">New York</data>
+  <data key="d1">0.3394265376872039</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-586.7622</data>
+  <data key="d8">990.6806</data>
+</node>
+<node id="Washington">
+  <data key="d0">Washington</data>
+  <data key="d1">0.2609465817158987</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-596.7355</data>
+  <data key="d8">827.78345</data>
+</node>
+<node id="Atlanta">
+  <data key="d0">Atlanta</data>
+  <data key="d1">0.22455230576206303</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-789.55255</data>
+  <data key="d8">824.45905</data>
+</node>
+<node id="Madrid">
+  <data key="d0">Madrid</data>
+  <data key="d1">0.500620220308234</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-407.2429</data>
+  <data key="d8">847.73004</data>
+</node>
+<node id="London">
+  <data key="d0">London</data>
+  <data key="d1">0.42031324977515044</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-410.56732</data>
+  <data key="d8">1007.3028</data>
+</node>
+<node id="Paris">
+  <data key="d0">Paris</data>
+  <data key="d1">0.5343028747792777</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-224.39914</data>
+  <data key="d8">917.5431</data>
+</node>
+<node id="Essen">
+  <data key="d0">Essen</data>
+  <data key="d1">0.3982236197438974</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-207.77698</data>
+  <data key="d8">1067.1426</data>
+</node>
+<node id="Milan">
+  <data key="d0">Milan</data>
+  <data key="d1">0.3858312076698967</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">-78.124146</data>
+  <data key="d8">967.4096</data>
+</node>
+<node id="St. Petersburg">
+  <data key="d0">St. Petersburg</data>
+  <data key="d1">0.34982435702089193</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">107</data>
+  <data key="d5">112</data>
+  <data key="d6">184</data>
+  <data key="d7">18.284374</data>
+  <data key="d8">1057.1692</data>
+</node>
+<node id="Algiers">
+  <data key="d0">Algiers</data>
+  <data key="d1">0.5584492717094494</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">-71.63187</data>
+  <data key="d8">796.3551</data>
+</node>
+<node id="Istanbul">
+  <data key="d0">Istanbul</data>
+  <data key="d1">0.7113671093874464</data>
+  <data key="d2">6</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">74.824005</data>
+  <data key="d8">911.7446</data>
+</node>
+<node id="Moscow">
+  <data key="d0">Moscow</data>
+  <data key="d1">0.3892084350741555</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">199.0896</data>
+  <data key="d8">1038.2292</data>
+</node>
+<node id="Cairo">
+  <data key="d0">Cairo</data>
+  <data key="d1">0.6333547239999474</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">130.26338</data>
+  <data key="d8">736.04895</data>
+</node>
+<node id="Baghdad">
+  <data key="d0">Baghdad</data>
+  <data key="d1">0.7369249725317958</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">249.61157</data>
+  <data key="d8">849.00354</data>
+</node>
+<node id="Tehran">
+  <data key="d0">Tehran</data>
+  <data key="d1">0.6179969982143424</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">381.7471</data>
+  <data key="d8">996.05756</data>
+</node>
+<node id="Delhi">
+  <data key="d0">Delhi</data>
+  <data key="d1">0.8260540548560696</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">541.58844</data>
+  <data key="d8">883.10297</data>
+</node>
+<node id="Karachi">
+  <data key="d0">Karachi</data>
+  <data key="d1">0.7393850079776565</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">473.38947</data>
+  <data key="d8">793.5918</data>
+</node>
+<node id="Riyadh">
+  <data key="d0">Riyadh</data>
+  <data key="d1">0.4871550069351638</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">362.56613</data>
+  <data key="d8">659.32513</data>
+</node>
+<node id="Mumbai">
+  <data key="d0">Mumbai</data>
+  <data key="d1">0.556592221831277</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">537.326</data>
+  <data key="d8">522.9272</data>
+</node>
+<node id="Chennai">
+  <data key="d0">Chennai</data>
+  <data key="d1">0.8757868211644938</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">639.62445</data>
+  <data key="d8">424.89117</data>
+</node>
+<node id="Kolkata">
+  <data key="d0">Kolkata</data>
+  <data key="d1">0.8314293188050771</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">153</data>
+  <data key="d6">153</data>
+  <data key="d7">633.23083</data>
+  <data key="d8">744.57385</data>
+</node>
+<node id="Beijing">
+  <data key="d0">Beijing</data>
+  <data key="d1">0.17802082188957757</data>
+  <data key="d2">2</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">729.73303</data>
+  <data key="d8">978.17725</data>
+</node>
+<node id="Seoul">
+  <data key="d0">Seoul</data>
+  <data key="d1">0.23952223014842988</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">943.52686</data>
+  <data key="d8">968.2334</data>
+</node>
+<node id="Tokyo">
+  <data key="d0">Tokyo</data>
+  <data key="d1">0.3257854185284358</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">1178.8657</data>
+  <data key="d8">921.8285</data>
+</node>
+<node id="Shanghai">
+  <data key="d0">Shanghai</data>
+  <data key="d1">0.5312755407210453</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">769.50867</data>
+  <data key="d8">830.67615</data>
+</node>
+<node id="Hong Kong">
+  <data key="d0">Hong Kong</data>
+  <data key="d1">1.0</data>
+  <data key="d2">6</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">781.10986</data>
+  <data key="d8">722.95056</data>
+</node>
+<node id="Taipei">
+  <data key="d0">Taipei</data>
+  <data key="d1">0.5661218900324565</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">1013.13416</data>
+  <data key="d8">772.67004</data>
+</node>
+<node id="Osaka">
+  <data key="d0">Osaka</data>
+  <data key="d1">0.20588971457608682</data>
+  <data key="d2">2</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">1155.6633</data>
+  <data key="d8">824.0469</data>
+</node>
+<node id="Bangkok">
+  <data key="d0">Bangkok</data>
+  <data key="d1">0.9479443801455358</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">796.0257</data>
+  <data key="d8">583.73596</data>
+</node>
+<node id="Ho Chi Minh City">
+  <data key="d0">Ho Chi Minh City</data>
+  <data key="d1">0.7678497010356007</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">1024.7354</data>
+  <data key="d8">538.98846</data>
+</node>
+<node id="Manila">
+  <data key="d0">Manila</data>
+  <data key="d1">0.7291949838163311</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">1197.0962</data>
+  <data key="d8">583.73596</data>
+</node>
+<node id="Jakarta">
+  <data key="d0">Jakarta</data>
+  <data key="d1">0.6852547989511428</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">888.83545</data>
+  <data key="d8">401.4312</data>
+</node>
+<node id="Sydney">
+  <data key="d0">Sydney</data>
+  <data key="d1">0.41322367881128774</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">153</data>
+  <data key="d5">18</data>
+  <data key="d6">21</data>
+  <data key="d7">1177.2085</data>
+  <data key="d8">131.28864</data>
+</node>
+<node id="Khartoum">
+  <data key="d0">Khartoum</data>
+  <data key="d1">0.22682283280859247</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">196.62912</data>
+  <data key="d8">577.29913</data>
+</node>
+<node id="Johannesburg">
+  <data key="d0">Johannesburg</data>
+  <data key="d1">0.07961257877635182</data>
+  <data key="d2">2</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">108.15817</data>
+  <data key="d8">176.57779</data>
+</node>
+<node id="Kinshasa">
+  <data key="d0">Kinshasa</data>
+  <data key="d1">0.10717550495680421</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">-79.19205</data>
+  <data key="d8">395.15308</data>
+</node>
+<node id="Lagos">
+  <data key="d0">Lagos</data>
+  <data key="d1">0.1418374904589183</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">-178.07135</data>
+  <data key="d8">556.4824</data>
+</node>
+<node id="São Paulo">
+  <data key="d0">São Paulo</data>
+  <data key="d1">0.25731220903645335</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">-456.49463</data>
+  <data key="d8">335.30508</data>
+</node>
+<node id="Buenos Aires">
+  <data key="d0">Buenos Aires</data>
+  <data key="d1">0.13365450061861878</data>
+  <data key="d2">2</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">-583.9969</data>
+  <data key="d8">64.68808</data>
+</node>
+<node id="Santiago">
+  <data key="d0">Santiago</data>
+  <data key="d1">0.04155089914926974</data>
+  <data key="d2">1</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">-919.666</data>
+  <data key="d8">7.442169</data>
+</node>
+<node id="Lima">
+  <data key="d0">Lima</data>
+  <data key="d1">0.16986935817020618</data>
+  <data key="d2">3</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">-979.51404</data>
+  <data key="d8">265.04874</data>
+</node>
+<node id="Bogotá">
+  <data key="d0">Bogotá</data>
+  <data key="d1">0.29235631492935504</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">-771.3471</data>
+  <data key="d8">405.5614</data>
+</node>
+<node id="Mexico City">
+  <data key="d0">Mexico City</data>
+  <data key="d1">0.3638477361520448</data>
+  <data key="d2">5</data>
+  <data key="d3">10.0</data>
+  <data key="d4">169</data>
+  <data key="d5">183</data>
+  <data key="d6">77</data>
+  <data key="d7">-961.29944</data>
+  <data key="d8">572.095</data>
+</node>
+<node id="Los Angeles">
+  <data key="d0">Los Angeles</data>
+  <data key="d1">0.37726888291335436</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">169</data>
+  <data key="d5">183</data>
+  <data key="d6">77</data>
+  <data key="d7">-992.5244</data>
+  <data key="d8">793.2723</data>
+</node>
+<node id="Miami">
+  <data key="d0">Miami</data>
+  <data key="d1">0.2774486898899163</data>
+  <data key="d2">4</data>
+  <data key="d3">10.0</data>
+  <data key="d4">242</data>
+  <data key="d5">255</data>
+  <data key="d6">0</data>
+  <data key="d7">-706.2949</data>
+  <data key="d8">650.15753</data>
+</node>
+<edge source="San Francisco" target="Chicago">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="San Francisco" target="Tokyo">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="San Francisco" target="Manila">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="San Francisco" target="Los Angeles">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Chicago" target="Montréal">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Chicago" target="Atlanta">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Chicago" target="Mexico City">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Chicago" target="Los Angeles">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Montréal" target="New York">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Montréal" target="Washington">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="New York" target="Washington">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="New York" target="Madrid">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="New York" target="London">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Washington" target="Atlanta">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Washington" target="Miami">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Atlanta" target="Miami">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Madrid" target="London">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Madrid" target="Paris">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Madrid" target="Algiers">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Madrid" target="São Paulo">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="London" target="Paris">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="London" target="Essen">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Paris" target="Essen">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Paris" target="Milan">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Paris" target="Algiers">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Essen" target="Milan">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Essen" target="St. Petersburg">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Milan" target="Istanbul">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="St. Petersburg" target="Moscow">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="St. Petersburg" target="Istanbul">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Algiers" target="Istanbul">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Algiers" target="Cairo">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Istanbul" target="Moscow">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Istanbul" target="Cairo">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Istanbul" target="Baghdad">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Moscow" target="Tehran">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Cairo" target="Baghdad">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Cairo" target="Khartoum">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Cairo" target="Riyadh">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Baghdad" target="Tehran">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Baghdad" target="Karachi">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Baghdad" target="Riyadh">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Tehran" target="Delhi">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Tehran" target="Karachi">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Delhi" target="Chennai">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Delhi" target="Kolkata">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Delhi" target="Karachi">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Delhi" target="Mumbai">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Karachi" target="Mumbai">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Karachi" target="Riyadh">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Mumbai" target="Chennai">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Chennai" target="Kolkata">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Chennai" target="Bangkok">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Chennai" target="Jakarta">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Kolkata" target="Hong Kong">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Kolkata" target="Bangkok">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Beijing" target="Seoul">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Beijing" target="Shanghai">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Seoul" target="Tokyo">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Seoul" target="Shanghai">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Tokyo" target="Shanghai">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Tokyo" target="Osaka">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Shanghai" target="Taipei">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Shanghai" target="Hong Kong">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Hong Kong" target="Taipei">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Hong Kong" target="Bangkok">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Hong Kong" target="Ho Chi Minh City">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Hong Kong" target="Manila">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Taipei" target="Osaka">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Taipei" target="Manila">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Bangkok" target="Jakarta">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Bangkok" target="Ho Chi Minh City">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Ho Chi Minh City" target="Manila">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Ho Chi Minh City" target="Jakarta">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Manila" target="Sydney">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Jakarta" target="Sydney">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Sydney" target="Los Angeles">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Khartoum" target="Johannesburg">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Khartoum" target="Kinshasa">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Khartoum" target="Lagos">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Johannesburg" target="Kinshasa">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Kinshasa" target="Lagos">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Lagos" target="São Paulo">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="São Paulo" target="Buenos Aires">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="São Paulo" target="Bogotá">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Buenos Aires" target="Bogotá">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Santiago" target="Lima">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Lima" target="Mexico City">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Lima" target="Bogotá">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Bogotá" target="Mexico City">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Bogotá" target="Miami">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Mexico City" target="Los Angeles">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="Mexico City" target="Miami">
+  <data key="d9">1.0</data>
+</edge>
+</graph></graphml>
