@@ -12,16 +12,22 @@ class Disease(Enum):
     
 class PandemicMDP:
     def __init__(self, n, k):
-        self.n = n
-        self.k = k
+        self.n = 48  # number of total cities
+        # TODO: 3 of the following cities get 3 disease cubes, 3 get 2, 3 get 1.
+        self.k = 9   # number of cities infected at beginning of game
         self.map = nx.read_graphml('world.graphml')
+        # TODO: if we want to play with limited disease cubes & colors, would need this:
+        # self.disease_spread = np.array([24, 24, 24, 24])
+        # self.color_map = ?
         self.disease_counts = np.zeros((n), dtype=int)
         # TODO: add array for city colors
+        # TODO: add discard pile for the epidemic step, or use deck_pos
         self.research_stations = np.zeros((n), dtype=bool)
         self.current_city = City.ATLANTA.value
         self.cure_status = np.zeros((4), dtype=bool)
         self.draw_pile = np.array([i for i in range(n)] + [-1]*4) # -1 is the placeholder for EPIDEMIC cards
         self.infect_pile = np.array([i for i in range(n)])
+        # TODO: in a 2-player game, each agent starts with 4 cards
         self.player_cards = []
         np.random.shuffle(self.draw_pile)
         np.random.shuffle(self.infect_pile)
@@ -42,10 +48,12 @@ class PandemicMDP:
         bottom_card = self.infect_pile[0]
         self.infect_pile = np.delete(self.infect_pile, 0)
         self.infect_pile = np.concatenate((self.infect_pile, [bottom_card]))
+        # TODO: in game, we shuffle the cards in the discard pile and add them on top.
         np.random.shuffle(self.infect_pile)
         card = self._draw_card(self.infect_pile)
-        self.disease_counts[card][random.randint(0, 3)] += 3
-        self._outbreak(card)
+        self.disease_counts[card] += 3
+        if self.disease_counts[card] > 3:
+            self._outbreak(card) # TODO: edit reward here?
     
     def _outbreak(self, city):
         # handle outbreaks in the given city
