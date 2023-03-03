@@ -1,5 +1,11 @@
 from enum import Enum
 
+class Disease(Enum):
+    BLUE = 0
+    BLACK = 1
+    RED = 2
+    YELLOW = 3
+
 class City(Enum):
     SAN_FRANCISCO = 0
     CHICAGO = 1
@@ -49,3 +55,5 @@ class City(Enum):
     MEXICO_CITY = 45
     LOS_ANGELES = 46
     MIAMI = 47
+
+color_map = [0]*12 + [1]*12 + [2]*12 + [3]*12

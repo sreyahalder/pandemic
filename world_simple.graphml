@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<key id="d9" for="edge" attr.name="weight" attr.type="double"/>
+<graph edgedefault="undirected">
+<node id="SAN_FRANCISCO"></node>
+<node id="CHICAGO"></node>
+<node id="MONTREAL"></node>
+<node id="NEW_YORK"></node>
+<node id="WASHINGTON"></node>
+<node id="ATLANTA"></node>
+<node id="MADRID"></node>
+<node id="LONDON"></node>
+<node id="PARIS"></node>
+<node id="ESSEN"></node>
+<node id="MILAN"></node>
+<node id="ST_PETERSBURG"></node>
+<node id="ALGIERS"></node>
+<node id="ISTANBUL"></node>
+<node id="MOSCOW"></node>
+<node id="CAIRO"></node>
+<node id="BAGHDAD"></node>
+<node id="TEHRAN"></node>
+<node id="DELHI"></node>
+<node id="KARACHI"></node>
+<node id="RIYADH"></node>
+<node id="MUMBAI"></node>
+<node id="CHENNAI"></node>
+<node id="KOLKATA"></node>
+<node id="BEIJING"></node>
+<node id="SEOUL"></node>
+<node id="TOKYO"></node>
+<node id="SHANGHAI"></node>
+<node id="HONG_KONG"></node>
+<node id="TAIPEI"></node>
+<node id="OSAKA"></node>
+<node id="BANGKOK"></node>
+<node id="HO_CHI_MINH_CITY"></node>
+<node id="MANILA"></node>
+<node id="JAKARTA"></node>
+<node id="SYDNEY"></node>
+<node id="KHARTOUM"></node>
+<node id="JOHANNESBURG"></node>
+<node id="KINSHASA"></node>
+<node id="LAGOS"></node>
+<node id="BUENOS_AIRES"></node>
+<node id="SANTIAGO"></node>
+<node id="LIMA"></node>
+<node id="BOGOTA"></node>
+<node id="MEXICO_CITY"></node>
+<node id="LOS_ANGELES"></node>
+<node id="MIAMI"></node>
+<edge source="SAN_FRANCISCO" target="CHICAGO">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SAN_FRANCISCO" target="TOKYO">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SAN_FRANCISCO" target="MANILA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SAN_FRANCISCO" target="LOS_ANGELES">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CHICAGO" target="MONTREAL">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CHICAGO" target="ATLANTA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CHICAGO" target="MEXICO_CITY">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CHICAGO" target="LOS_ANGELES">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MONTREAL" target="NEW_YORK">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MONTREAL" target="WASHINGTON">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="NEW_YORK" target="WASHINGTON">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="NEW_YORK" target="MADRID">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="NEW_YORK" target="LONDON">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="WASHINGTON" target="ATLANTA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="WASHINGTON" target="MIAMI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ATLANTA" target="MIAMI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MADRID" target="LONDON">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MADRID" target="PARIS">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MADRID" target="ALGIERS">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MADRID" target="SAO_PAULO">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="LONDON" target="PARIS">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="LONDON" target="ESSEN">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="PARIS" target="ESSEN">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="PARIS" target="MILAN">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="PARIS" target="ALGIERS">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ESSEN" target="MILAN">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ESSEN" target="ST_PETERSBURG">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MILAN" target="ISTANBUL">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ST_PETERSBURG" target="MOSCOW">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ST_PETERSBURG" target="ISTANBUL">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ALGIERS" target="ISTANBUL">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ALGIERS" target="CAIRO">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ISTANBUL" target="MOSCOW">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ISTANBUL" target="CAIRO">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="ISTANBUL" target="BAGHDAD">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MOSCOW" target="TEHRAN">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CAIRO" target="BAGHDAD">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CAIRO" target="KHARTOUM">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CAIRO" target="RIYADH">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BAGHDAD" target="TEHRAN">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BAGHDAD" target="KARACHI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BAGHDAD" target="RIYADH">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="TEHRAN" target="DELHI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="TEHRAN" target="KARACHI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="DELHI" target="CHENNAI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="DELHI" target="KOLKATA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="DELHI" target="KARACHI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="DELHI" target="MUMBAI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="KARACHI" target="MUMBAI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="KARACHI" target="RIYADH">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MUMBAI" target="CHENNAI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CHENNAI" target="KOLKATA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CHENNAI" target="BANGKOK">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="CHENNAI" target="JAKARTA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="KOLKATA" target="HONG_KONG">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="KOLKATA" target="BANGKOK">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BEIJING" target="SEOUL">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BEIJING" target="SHANGHAI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SEOUL" target="TOKYO">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SEOUL" target="SHANGHAI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="TOKYO" target="SHANGHAI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="TOKYO" target="OSAKA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SHANGHAI" target="TAIPEI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SHANGHAI" target="HONG_KONG">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="HONG_KONG" target="TAIPEI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="HONG_KONG" target="BANGKOK">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="HONG_KONG" target="HO_CHI_MINH_CITY">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="HONG_KONG" target="MANILA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="TAIPEI" target="OSAKA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="TAIPEI" target="MANILA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BANGKOK" target="JAKARTA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BANGKOK" target="HO_CHI_MINH_CITY">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="HO_CHI_MINH_CITY" target="MANILA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="HO_CHI_MINH_CITY" target="JAKARTA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MANILA" target="SYDNEY">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="JAKARTA" target="SYDNEY">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SYDNEY" target="LOS_ANGELES">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="KHARTOUM" target="JOHANNESBURG">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="KHARTOUM" target="KINSHASA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="KHARTOUM" target="LAGOS">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="JOHANNESBURG" target="KINSHASA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="KINSHASA" target="LAGOS">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="LAGOS" target="SAO_PAULO">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SAO_PAULO" target="BUENOS_AIRES">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SAO_PAULO" target="BOGOTA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BUENOS_AIRES" target="BOGOTA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="SANTIAGO" target="LIMA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="LIMA" target="MEXICO_CITY">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="LIMA" target="BOGOTA">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BOGOTA" target="MEXICO_CITY">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="BOGOTA" target="MIAMI">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MEXICO_CITY" target="LOS_ANGELES">
+  <data key="d9">1.0</data>
+</edge>
+<edge source="MEXICO_CITY" target="MIAMI">
+  <data key="d9">1.0</data>
+</edge>
+</graph></graphml>
