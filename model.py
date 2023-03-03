@@ -7,9 +7,11 @@ import world
 class PandemicMDP:
     def __init__(self):
         self.n = 48
-        self.k = 10
+        self.k = 9
         self.map = nx.read_graphml('world_simple.graphml')
         self.disease_counts = np.zeros((self.n), dtype=int)
+        # TODO: if we want to play with limited disease cubes & colors, would need this:
+        # self.disease_spread = np.array([24, 24, 24, 24])
         self.color_map = world.color_map
         self.research_stations = np.zeros((self.n), dtype=bool)
         self.research_stations[world.City.ATLANTA.value] = True
@@ -24,9 +26,8 @@ class PandemicMDP:
 
         random.shuffle(self.draw_pile)
         random.shuffle(self.infect_pile)
-        # Player starts the game drawing 2 cards
-        self.player_cards.append(self.draw_pile.pop())
-        self.player_cards.append(self.draw_pile.pop())
+        # Player starts the game drawing 4 cards
+        for _ in range(4): self.player_cards.append(self.draw_pile.pop())
         # Game starts with k cities infected
         for _ in range(self.k):
             self._infect(1)
@@ -46,7 +47,7 @@ class PandemicMDP:
         self.infect_pile = self.infect_pile + self.infect_discarded
         self.infect_discarded = []
         self._infect(3)
-    
+
     def _outbreak(self, city):
         # handle outbreaks in the given city
         self.outbreak_count += 1
