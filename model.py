@@ -43,6 +43,7 @@ class PandemicMDP:
             self._outbreak(card)
     
     def _epidemic(self):
+        print('You drew an EPIDEMIC card!! >:)')
         random.shuffle(self.infect_discarded)
         self.infect_pile = self.infect_pile + self.infect_discarded
         self.infect_discarded = []
@@ -135,6 +136,7 @@ def play_game():
         a = random.choice(actions)
         print(f'----------------\nTake action {a}.')
         print(f'Now in: {world.City(pandemic.step(a)).name}. Current cards: {pandemic.player_cards}')
+        print(f'Disease counts: {pandemic.disease_counts}')
     
     print(f'GAME OVER. Cure status: {pandemic.cure_status}')
 
