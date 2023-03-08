@@ -30,7 +30,7 @@ class PandemicMDP:
         for _ in range(4): self.player_cards.append(self.draw_pile.pop())
         # Game starts with k cities infected
         for _ in range(self.k):
-            self._infect(1)
+            self._infect(1) #did we change this to infect w one disease cube instead of 3 of 3, 3 of 2, 3 of 1?
     
     def _get_neighbors(self, city):
         return [n for n in self.map.neighbors(world.City(city).name)]
@@ -39,6 +39,7 @@ class PandemicMDP:
         card = self.infect_pile.pop()
         self.infect_discarded.append(card)
         self.disease_counts[card] += count
+        print("Now infecting: ", world.City(card).name)
         if self.disease_counts[card] > 3:
             self._outbreak(card)
     
@@ -72,16 +73,25 @@ class PandemicMDP:
         if action == "MOVE":
             neighbors = self._get_neighbors(self.current_city)
             self.current_city = world.City[np.random.choice(neighbors)].value
-        elif action == "FLY":
+        elif action == "DIRECT_FLIGHT":
+
+            # if self.current_city in self.player_cards:
+            #     self.player_cards.remove(self.current_city)
+            #     self.current_city = self.player_cards[np.random.choice(len(self.player_cards))]
+        elif action == "CHARTER_FLIGHT":
             if self.current_city in self.player_cards:
                 self.player_cards.remove(self.current_city)
                 self.current_city = self.player_cards[np.random.choice(len(self.player_cards))]
         elif action == "TREAT":
             if self.disease_counts[self.current_city] > 0:
-                self.disease_counts[self.current_city] -= 1
-                reward += 1
+                if self.cure_status[color] == True:
+                    self.disease_counts[self.current_city] = 0 #can you clear all disease cubes even if you build a research station? aka take this out of an if statement?
+                    reward += 5
+                else:
+                    self.disease_counts[self.current_city] -= 1
+                    reward += 1
         elif action == "BUILD":
-            if self.research_stations[self.current_city] == False and self.player_cards.count(self.current_city) > 0:
+            if self.research_stations[self.current_city] == False and self.player_cards.count(self.current_city) > 0: #why do we check if player_cards count > 0
                 self.player_cards.remove(self.current_city)
                 self.research_stations[self.current_city] = True
         elif action == "CURE":
@@ -90,7 +100,7 @@ class PandemicMDP:
                 card_indices = [i for i in range(len(self.player_cards)) if self.color_map[self.player_cards[i]] == color]
                 if len(card_indices) >= 4:
                     for i in sorted(card_indices, reverse=True)[:4]:
-                        del self.player_cards[i]
+                        del self.player_cards[i] #does this do in place deletion? change this to pop
                     self.cure_status[color] = True
                     if all(self.cure_status.values()):
                         reward += 100 # game ends when all cured
@@ -98,8 +108,7 @@ class PandemicMDP:
                         self.game_over = True
                     else:
                         reward += 10
-            elif self.cure_status[color] == True:
-                self.disease_counts[self.current_city] = 0
+            
         else:
             raise ValueError("Invalid action")
 
@@ -130,13 +139,16 @@ class PandemicMDP:
 
 def play_game():
     pandemic = PandemicMDP()
-    actions = ["MOVE", "FLY", "BUILD", "CURE"]
-    print(f'Start of game. Start in ATLANTA. Current cards: {pandemic.player_cards}. Cure status: {pandemic.cure_status}')
+    actions = ["MOVE", "DIRECT_FLIGHT", "CHARTER_FLIGHT", "BUILD", "CURE"]
+    print(f'Start of game. Start in ATLANTA. Current cards: {[world.City(i).name for i in pandemic.player_cards if i >= 0]}. Cure status: {pandemic.cure_status}')
     while not pandemic.game_over:
         a = random.choice(actions)
         print(f'----------------\nTake action {a}.')
-        print(f'Now in: {world.City(pandemic.step(a)).name}. Current cards: {pandemic.player_cards}')
-        print(f'Disease counts: {pandemic.disease_counts}')
+        print(f'Now in: {world.City(pandemic.step(a)).name}. Current cards: {[world.City(i).name for i in pandemic.player_cards if i >= 0]}')
+        disease_dict = {}
+        for i in range(len(pandemic.disease_counts)):
+            disease_dict[world.City(i).name] = pandemic.disease_counts[i]
+        print(f'Disease counts: {disease_dict}')
     
     print(f'GAME OVER. Cure status: {pandemic.cure_status}')
 
