@@ -3,6 +3,8 @@ from enum import Enum
 import random
 import networkx as nx
 import world
+import math
+import copy
     
 class PandemicMDP:
     def __init__(self):
@@ -25,7 +27,7 @@ class PandemicMDP:
         self.outbreak_count = 0
         self.game_over = False
         self.m = 10
-        self.d = 10 #depth of rollouts
+        self.d = 2 #depth of rollouts
         self.c = 100 #exploration param
         self.Q = {}
         self.N = {}
@@ -37,7 +39,7 @@ class PandemicMDP:
         for _ in range(4): self.player_cards.append(self.draw_pile.pop())
         # Game starts with k cities infected
         for _ in range(self.k):
-            self._infect(1) #did we change this to infect w one disease cube instead of 3 of 3, 3 of 2, 3 of 1?
+            self._infect(1)
     
     def _get_neighbors(self, city):
         return [n for n in self.map.neighbors(world.City(city).name)]
@@ -59,21 +61,31 @@ class PandemicMDP:
 
     def _outbreak(self, city):
         # handle outbreaks in the given city
-        self.outbreak_count += 1
-        if self.outbreak_count == 10:
-            print('Too many outbreaks, you lost.')
-            self.game_over = True
-            return
+        outbreak_cities = []
+        already_outbreak = []
+
+        def add_neighbors(c):
+            self.outbreak_count += 1
+            if self.outbreak_count == 10:
+                print('Too many outbreaks, you lost.')
+                self.game_over = True
+                return True
+            neighbors = self._get_neighbors(c)
+            for neighbor in neighbors:
+                n = world.City[neighbor].value
+                if n not in already_outbreak:
+                    outbreak_cities.append(n)
+            return False
         
-        neighbors = self._get_neighbors(city)
-        for neighbor in neighbors:
-            n = world.City[neighbor].value
-            if self.disease_counts[n] < 3:
-                self.disease_counts[n] += 1
-            elif self.disease_counts[n] == 3:
-                self.disease_counts[n] = 0 #Why is disease counts 0 now after outbreak? doesnt it stay 3?
-                self._outbreak(n)
-        self.disease_counts[city] = 3
+        self.outbreak_count += 1
+        add_neighbors(city)
+        for c in outbreak_cities:
+            if self.disease_counts[c] >= 3:
+                self.disease_counts[c] = 3
+                if add_neighbors(c): return
+                already_outbreak.append(c)
+            else:
+                self.disease_counts[c] += 1
     
     def move(self, new_city):
         self.current_city = new_city
@@ -83,6 +95,7 @@ class PandemicMDP:
         self.current_city = new_city
     
     def treat(self, reward):
+        color = self.color_map[self.current_city]
         if self.disease_counts[self.current_city] > 0:
             if self.cure_status[color] == True:
                 self.disease_counts[self.current_city] = 0 
@@ -91,7 +104,7 @@ class PandemicMDP:
                 self.disease_counts[self.current_city] -= 1
                 reward += 1
     
-    def build():
+    def build(self):
         if self.research_stations[self.current_city] == False and self.player_cards.count(self.current_city) > 0: 
             self.player_cards.remove(self.current_city)
             self.research_stations[self.current_city] = True
@@ -140,6 +153,7 @@ class PandemicMDP:
             if len(self.draw_pile) <= 0:
                 print('Ran out of draw cards, you lost.')
                 self.game_over = True
+                return reward
             # Check for epidemic
             if card == -1:
                 self._epidemic()
@@ -156,7 +170,7 @@ class PandemicMDP:
 
 
     def bonus(self, n_sum, n):
-        return np.inf if n == 0 else sqrt(log(n_sum)/n)
+        return np.inf if n == 0 else math.sqrt(math.log(n_sum)/n)
 
     def explore(self, s):
             n_values = [self.N[(s, a)] for a in self.actions]
@@ -180,10 +194,6 @@ class PandemicMDP:
         self.N[(original_state, a)] += 1
         self.Q[(original_state, a)] += (q-self.Q[(original_state, a)]) / self.N[(original_state, a)]
         return q
-
-        
-
-
 
     """
     def step(self, action):
@@ -255,14 +265,12 @@ class PandemicMDP:
         return self.current_city
         """
 
-
-
 def play_game():
     pandemic = PandemicMDP()
     #actions = ["MOVE", "FLY", "TREAT", "BUILD", "CURE"]
     print(f'Start of game. Start in ATLANTA. Current cards: {[world.City(i).name for i in pandemic.player_cards if i >= 0]}. Cure status: {pandemic.cure_status}')
     while not pandemic.game_over:
-        a = random.choice(self.actions)
+        a = random.choice(pandemic.actions)
         print(f'----------------\nTake action {a}.')
         print(f'Now in: {world.City(pandemic.step(a)).name}. Current cards: {[world.City(i).name for i in pandemic.player_cards if i >= 0]}')
         disease_dict = {}
@@ -272,52 +280,20 @@ def play_game():
     
     print(f'GAME OVER. Cure status: {pandemic.cure_status}')
 
-"""
-def bonus(n_sum, n):
-    return np.inf if n == 0 else sqrt(log(n_sum)/n)
-
-def explore(s):
-        n_values = [N[(s, a)] for a in actions]
-        n_sum = sum(n_values)
-        ucb = np.array([Q[(s, a)] + self.c*bonus(n_sum, N[(s, a)]) for a in actions])
-        action_idx = np.argmax(ucb)
-        return self.actions[action_idx]
-        
-def simulate(s, d=self.d):
-    original_state = s
-    if self.d <= 0:
-        return 
-    if not (s, actions[0]) in N.keys():
-        for a in actions:
-            Q[(s, a)] = 0.0
-            N[(s, a)] = 0
-        return
-    a = explore(s)
-    r = randstep()
-    q = r + self.discount*simulate(self.disease_counts, d-1)
-    N[(original_state, a)] += 1
-    Q[(original_state, a)] += (q-Q[(original_state, a)]) / N[(original_state, a)]
-    return q
-
-def select_action():
-    for i in range(mcts.m):
-        simulate()
-    idx = np.argmax([Q[(self.disease_counts, a)] for a in self.actions])
-    return self.action[idx]
-"""
-
 def main():
     pandemic = PandemicMDP()
     
     while not pandemic.game_over:
-        original_pandemic = pandemic
+        original_pandemic = copy.deepcopy(pandemic)
 
+        print('------------------Simulate')
         for i in range(pandemic.m):
             pandemic.simulate(tuple(pandemic.disease_counts), pandemic.d)
         
         original_state = tuple(original_pandemic.disease_counts)
         a = np.argmax(np.array([pandemic.Q[(original_state, a)] for a in pandemic.actions]))
         action = pandemic.actions[a]
+        print(f'----------------Take action {action}.')
 
         pandemic = original_pandemic
         pandemic.step(action)
