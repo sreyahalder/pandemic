@@ -8,6 +8,14 @@ import copy
 
 ACTIONS = ["TREAT", "CURE"]
 
+def return_action(action_idx, actions, move, fly):
+    if action_idx < 2:
+        return -1, actions[action_idx]
+    elif action_idx < len(move) + 2:
+        return actions[action_idx], "MOVE"
+    else:
+        return actions[action_idx], "FLY"
+
 class PandemicMDP:
     def __init__(self):
         self.n = 48
@@ -41,6 +49,7 @@ class PandemicMDP:
         move = [world.City[n].value for n in self._get_neighbors(self.current_city)]
         fly = self.player_cards
         return move, fly
+    
     
     def _get_neighbors(self, city):
         return [n for n in self.map.neighbors(world.City(city).name)]
@@ -180,12 +189,7 @@ class PandemicMDP:
         n_sum = sum(n_values)
         ucb = np.array([Q.get((s, a),0) + self.c * self.bonus(n_sum, N.get((s, a),0)) for a in actions])
         action_idx = np.argmax(ucb)
-        if action_idx < 2:
-            return -1, actions[action_idx]
-        elif action_idx < len(move) + 2:
-            return actions[action_idx], "MOVE"
-        else:
-            return actions[action_idx], "FLY"
+        return return_action(action_idx, actions, move, fly)
             
     def simulate(self, s, d, N, Q):
         original_state = s
@@ -221,17 +225,11 @@ def main():
         move, fly = pandemic.get_actions()
         actions = ACTIONS + move + fly
         action_idx = np.argmax(np.array([Q.get((original_state, a),0) for a in actions]))
-        action = actions[action_idx]
-        if action_idx < 2:
-            city, a = -1, actions[action_idx]
-        elif action_idx < len(move) + 2:
-            city, a = actions[action_idx], "MOVE"
-        else:
-            city, a = actions[action_idx], "FLY"
+        city, action = return_action(action_idx, actions, move, fly)
         print(f'Currently in {original_pandemic.current_city}. Taking action {action} from {actions}.')
         
         print(original_pandemic.disease_counts)
-        print(original_pandemic.step(city, a))
+        print(original_pandemic.step(city, action))
         original_pandemic.end_turn()
         pandemic = copy.deepcopy(original_pandemic)
 
