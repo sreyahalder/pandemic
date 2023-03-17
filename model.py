@@ -36,7 +36,7 @@ class PandemicMDP:
         self.game_over = False
         self.m = 200
         self.d = 4 #depth of rollouts
-        self.c = 100 #exploration param
+        self.c = 10 #exploration param
         self.discount = 0.9
 
         # START OF GAME
@@ -153,7 +153,7 @@ class PandemicMDP:
     def end_turn(self):
         for _ in range(1):
             if len(self.infect_pile) <= 0:
-                # print('Ran out of infect cards, you lost.')
+                print('Ran out of infect cards, you lost.')
                 self.game_over = True
                 return
             self._infect(1)
@@ -163,7 +163,7 @@ class PandemicMDP:
         # Draw two cards from DRAW_PILE
         for _ in range(1):
             if len(self.draw_pile) <= 0:
-                # print('Ran out of draw cards, you lost.')
+                print('Ran out of draw cards, you lost.')
                 self.game_over = True
                 return
             card = self.draw_pile.pop()
@@ -212,30 +212,44 @@ class PandemicMDP:
 
 def main():
     pandemic = PandemicMDP()
+    random = True
 
     N = {}
     Q = {}
-    while not pandemic.game_over:
-        original_pandemic = copy.deepcopy(pandemic)
 
-        for i in range(pandemic.m):
-            pandemic.simulate(tuple(pandemic.disease_counts), pandemic.d, N, Q)
+    if not random:
+        while not pandemic.game_over:
+            original_pandemic = copy.deepcopy(pandemic)
+
+            for i in range(pandemic.m):
+                pandemic.simulate(tuple(pandemic.disease_counts), pandemic.d, N, Q)
+            
+            original_state = tuple(original_pandemic.disease_counts)
+            move, fly = pandemic.get_actions()
+            actions = ACTIONS + move + fly
+            action_idx = np.argmax(np.array([Q.get((original_state, a),0) for a in actions]))
+            city, action = return_action(action_idx, actions, move, fly)
+            print(f'Currently in {original_pandemic.current_city}. Taking action {action} from {actions}.')
+            
+            print(original_pandemic.disease_counts)
+            print(original_pandemic.step(city, action))
+            original_pandemic.end_turn()
+            pandemic = copy.deepcopy(original_pandemic)
+    
+    else:
+        while not pandemic.game_over:
+            move, fly = pandemic.get_actions()
+            actions = ACTIONS + move + fly
+            action_idx = np.random.choice(len(actions))
+            city, action = return_action(action_idx, actions, move, fly)
+            pandemic.step(city, action)
+            pandemic.end_turn()
+        score = -np.sum(pandemic.disease_counts)*pandemic.outbreak_count + 100*np.sum(pandemic.cure_status)
+        print(score)
         
-        original_state = tuple(original_pandemic.disease_counts)
-        move, fly = pandemic.get_actions()
-        actions = ACTIONS + move + fly
-        action_idx = np.argmax(np.array([Q.get((original_state, a),0) for a in actions]))
-        city, action = return_action(action_idx, actions, move, fly)
-        print(f'Currently in {original_pandemic.current_city}. Taking action {action} from {actions}.')
-        
-        print(original_pandemic.disease_counts)
-        print(original_pandemic.step(city, action))
-        original_pandemic.end_turn()
-        pandemic = copy.deepcopy(original_pandemic)
+
 
     
 if __name__ == "__main__":
     main()
     
-
-#play_game()
