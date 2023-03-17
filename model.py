@@ -30,6 +30,7 @@ class PandemicMDP:
         self.cure_status = np.zeros((4), dtype=bool)
         self.draw_pile = [i for i in range(self.n)] + [-1]*4 # -1 is the placeholder for EPIDEMIC cards
         self.infect_pile = [i for i in range(self.n)]
+        self.num_cards_to_cure = 2
         self.infect_discarded = []
         self.player_cards = []
         self.outbreak_count = 0
@@ -116,23 +117,25 @@ class PandemicMDP:
             return -100
     
     def cure(self):
-        color = self.color_map[self.current_city]
-        if self.cure_status[color] == False:
-            card_indices = [i for i in range(len(self.player_cards)) if self.color_map[self.player_cards[i]] == color]
-            if len(card_indices) >= 2:
-                for i in sorted(card_indices, reverse=True)[:2]:
-                    del self.player_cards[i]
-                self.cure_status[color] = True
-                if all(self.cure_status):
-                    print('Congrats, you cured all the diseases!')
-                    self.game_over = True
-                    return 1000 # game ends when all cured
+        colors = np.unique(self.color_map)
+        for color in colors:
+            if self.cure_status[color] == False:
+                card_indices = [i for i in range(len(self.player_cards)) if self.color_map[self.player_cards[i]] == color]
+                if len(card_indices) >= self.num_cards_to_cure:
+                    print("here")
+                    for i in sorted(card_indices, reverse=True)[:2]:
+                        self.player_cards.pop(i)
+                    self.cure_status[color] = True
+                    if all(self.cure_status):
+                        print('Congrats, you cured all the diseases!')
+                        self.game_over = True
+                        return 1000 # game ends when all cured
+                    else:
+                        return 500
                 else:
-                    return 100
+                    return -1000
             else:
-                return -50
-        else:
-            return -200
+                return -1000
 
     def step(self, city, action):
         reward = 0
@@ -212,7 +215,7 @@ class PandemicMDP:
 
 def main():
     pandemic = PandemicMDP()
-    random = True
+    random = False
 
     N = {}
     Q = {}
@@ -231,6 +234,7 @@ def main():
             action_idx = np.argmax(np.array([Q.get((original_state, a),0) for a in actions]))
             city, action = return_action(action_idx, actions, move, fly)
             print(f'Currently in {original_pandemic.current_city}. Taking action {action}.')
+            print("Cure statuses: ", pandemic.cure_status)
             
             original_pandemic.step(city, action)
             original_pandemic.end_turn()
@@ -250,6 +254,7 @@ def main():
             pandemic.end_turn()
         score = -np.sum(pandemic.disease_counts)*pandemic.outbreak_count + 100*np.sum(pandemic.cure_status)
         print(score)
+    return score
         
 
     
