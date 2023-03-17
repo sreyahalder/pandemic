@@ -30,6 +30,7 @@ class PandemicMDP:
         self.cure_status = np.zeros((4), dtype=bool)
         self.draw_pile = [i for i in range(self.n)] + [-1]*4 # -1 is the placeholder for EPIDEMIC cards
         self.infect_pile = [i for i in range(self.n)]
+        self.num_cards_to_cure = 2
         self.infect_discarded = []
         self.player_cards = []
         self.outbreak_count = 0
@@ -243,6 +244,8 @@ def main():
             print(f'Currently in {original_pandemic.current_city}. Taking action {action}.')
             
             original_pandemic.step(city, action)
+            if action == "CURE":
+                print("Cure statuses: ", pandemic.cure_status)
             original_pandemic.end_turn()
             pandemic = copy.deepcopy(original_pandemic)
         score = -np.sum(pandemic.disease_counts) * pandemic.outbreak_count + \
@@ -261,6 +264,7 @@ def main():
         score = -np.sum(pandemic.disease_counts) * pandemic.outbreak_count + \
             100 * np.sum(pandemic.cure_status)
         print(score)
+    return score
         
 
     
