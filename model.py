@@ -99,43 +99,48 @@ class PandemicMDP:
     
     def move(self, new_city):
         self.current_city = new_city
-        return self.disease_counts[new_city] * 10
+        counts = sum(self.disease_counts[new_city] + [self.disease_counts[n] for n in self._get_neighbors(new_city)])
+        return counts * 10 if counts > 0 else -50
     
     def fly(self, new_city):
         self.player_cards.remove(new_city)
         self.current_city = new_city
-        return self.disease_counts[new_city] * 7
+        counts = sum(self.disease_counts[new_city] + [self.disease_counts[n] for n in self._get_neighbors(new_city)])
+        return counts * 10 if counts > 0 else -50
     
     def treat(self):
         color = self.color_map[self.current_city]
         if self.disease_counts[self.current_city] > 0:
             if self.cure_status[color] == True:
                 self.disease_counts[self.current_city] = 0 
-                return 50
+                return 1000
             else:
                 self.disease_counts[self.current_city] -= 1
                 return 300
         else:
-            return -100
+            return -10000
     
     def cure(self):
-        color = self.color_map[self.current_city]
-        if self.cure_status[color] == False:
-            card_indices = [i for i in range(len(self.player_cards)) if self.color_map[self.player_cards[i]] == color]
-            if len(card_indices) >= 2:
-                for i in sorted(card_indices, reverse=True)[:2]:
-                    del self.player_cards[i]
-                self.cure_status[color] = True
-                if all(self.cure_status):
-                    print('Congrats, you cured all the diseases!')
-                    self.game_over = True
-                    return 1000 # game ends when all cured
+        reward = 0
+        colors = np.unique(self.color_map)
+        for color in colors:
+            if self.cure_status[color] == False:
+                card_indices = [i for i in range(len(self.player_cards)) if self.color_map[self.player_cards[i]] == color]
+                if len(card_indices) >= 3:
+                    for i in sorted(card_indices, reverse=True)[:3]:
+                        self.player_cards.pop(i)
+                    self.cure_status[color] = True
+                    if all(self.cure_status):
+                        print('Congrats, you cured all the diseases!')
+                        self.game_over = True
+                        reward += 1000 # game ends when all cured
+                    else:
+                        reward += 100
                 else:
-                    return 100
+                    reward -= 50
             else:
-                return -50
-        else:
-            return -200
+                reward -= 20000
+        return reward
 
     def step(self, city, action):
         reward = 0
@@ -187,6 +192,7 @@ class PandemicMDP:
 
     def explore(self, s, N, Q):
         move, fly = self.get_actions()
+        actions_str = ACTIONS + ['MOVE']*len(move) + ['FLY']*len(fly)
         actions = ACTIONS + move + fly
         n_values = [N.get((s, a), 0) for a in actions]
         n_sum = sum(n_values)
@@ -195,27 +201,27 @@ class PandemicMDP:
         return return_action(action_idx, actions, move, fly)
             
     def simulate(self, s, d, N, Q):
-        original_state = s
         if d <= 0:
             return 0
         if self.game_over:
             return 0
         rollout = copy.deepcopy(self)
-        city, a = rollout.explore(s, N, Q)
-        r = rollout.step(city, a)
+        city, action = rollout.explore(s, N, Q)
+        a = city if city != -1 else action
+        r = rollout.step(city, action)
         rollout.end_turn()
-        q = r + self.discount * rollout.simulate(tuple(rollout.disease_counts), d-1, N, Q)
-        if (original_state, a) not in N.keys():
-            N[(original_state, a)] = 0
-        if (original_state, a) not in Q.keys():
-            Q[(original_state, a)] = 0
-        N[(original_state, a)] += 1
-        Q[(original_state, a)] += (q - Q[(original_state, a)]) / N[(original_state, a)]
+        q = r + self.discount * rollout.simulate((tuple(rollout.disease_counts), rollout.current_city), d-1, N, Q)
+        if (s, a) not in N.keys():
+            N[(s, a)] = 0
+        if (s, a) not in Q.keys():
+            Q[(s, a)] = 0
+        N[(s, a)] += 1
+        Q[(s, a)] += (q - Q[(s, a)]) / N[(s, a)]
         return q
 
 def main():
     pandemic = PandemicMDP()
-    random = True
+    random = False
 
     N = {}
     Q = {}
@@ -226,20 +232,21 @@ def main():
             original_pandemic = copy.deepcopy(pandemic)
 
             for i in range(pandemic.m):
-                pandemic.simulate(tuple(pandemic.disease_counts), pandemic.d, N, Q)
+                pandemic.simulate((tuple(pandemic.disease_counts), pandemic.current_city), pandemic.d, N, Q)
             
-            original_state = tuple(original_pandemic.disease_counts)
+            s = (tuple(original_pandemic.disease_counts), original_pandemic.current_city)
             move, fly = pandemic.get_actions()
             actions = ACTIONS + move + fly
-            action_idx = np.argmax(np.array([Q.get((original_state, a),0) for a in actions]))
+            actions_str = ACTIONS + ['MOVE']*len(move) + ['FLY']*len(fly)
+            action_idx = np.argmax(np.array([Q.get((s, a),0) for a in actions]))
             city, action = return_action(action_idx, actions, move, fly)
             print(f'Currently in {original_pandemic.current_city}. Taking action {action}.')
             
             original_pandemic.step(city, action)
             original_pandemic.end_turn()
-            score = -np.sum(original_pandemic.disease_counts) * original_pandemic.outbreak_count + \
-                100 * np.sum(original_pandemic.cure_status)
             pandemic = copy.deepcopy(original_pandemic)
+        score = -np.sum(pandemic.disease_counts) * pandemic.outbreak_count + \
+                100 * np.sum(pandemic.cure_status)
         print('Final score:', score)
     
     else:
@@ -251,7 +258,8 @@ def main():
             print(f'Currently in {pandemic.current_city}. Taking action {action}.')
             pandemic.step(city, action)
             pandemic.end_turn()
-        score = -np.sum(pandemic.disease_counts)*pandemic.outbreak_count + 100*np.sum(pandemic.cure_status)
+        score = -np.sum(pandemic.disease_counts) * pandemic.outbreak_count + \
+            100 * np.sum(pandemic.cure_status)
         print(score)
         
 
