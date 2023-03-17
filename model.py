@@ -36,24 +36,30 @@ class PandemicMDP:
         self.outbreak_count = 0
         self.game_over = False
         self.m = 200
-        self.d = 4 #depth of rollouts
-        self.c = 10 #exploration param
+        self.d = 4 # depth of rollouts
+        self.c = 100 # xploration param
         self.discount = 0.9
 
         # START OF GAME
         random.shuffle(self.draw_pile)
         random.shuffle(self.infect_pile)
-        for _ in range(4): self.player_cards.append(self.draw_pile.pop())
+        for _ in range(4):
+            card = self.draw_pile.pop()
+            if card != -1:
+                self.player_cards.append(card)
+            else:
+                self.draw_pile.append(-1)
+                random.shuffle(self.draw_pile)
         for _ in range(self.k): self._infect(1)
     
     def get_actions(self):
-        move = [world.City[n].value for n in self._get_neighbors(self.current_city)]
+        move = self._get_neighbors(self.current_city)
         fly = self.player_cards
         return move, fly
     
     
     def _get_neighbors(self, city):
-        return [n for n in self.map.neighbors(world.City(city).name)]
+        return [world.City[n].value for n in self.map.neighbors(world.City(city).name)]
 
     def _infect(self, count):
         card = self.infect_pile.pop()
@@ -70,8 +76,8 @@ class PandemicMDP:
 
     def _outbreak(self, city):
         # handle outbreaks in the given city
-        outbreak_cities = []
-        already_outbreak = []
+        outbreak_cities = [city] # cities that need to be infected
+        already_outbreak = [] # cities that already experienced an outbreak
 
         def add_neighbors(c):
             self.outbreak_count += 1
@@ -79,14 +85,11 @@ class PandemicMDP:
                 # print('Too many outbreaks, you lost.')
                 self.game_over = True
                 return True
-            neighbors = self._get_neighbors(c)
-            for neighbor in neighbors:
-                n = world.City[neighbor].value
+            for n in self._get_neighbors(c):
                 if n not in already_outbreak:
                     outbreak_cities.append(n)
             return False
         
-        add_neighbors(city)
         for c in outbreak_cities:
             if self.disease_counts[c] >= 3:
                 self.disease_counts[c] = 3
