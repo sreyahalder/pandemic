@@ -215,6 +215,7 @@ def main():
 
     N = {}
     Q = {}
+    score = 0
     while not pandemic.game_over:
         original_pandemic = copy.deepcopy(pandemic)
 
@@ -226,12 +227,14 @@ def main():
         actions = ACTIONS + move + fly
         action_idx = np.argmax(np.array([Q.get((original_state, a),0) for a in actions]))
         city, action = return_action(action_idx, actions, move, fly)
-        print(f'Currently in {original_pandemic.current_city}. Taking action {action} from {actions}.')
+        print(f'Currently in {original_pandemic.current_city}. Taking action {action}.')
         
-        print(original_pandemic.disease_counts)
-        print(original_pandemic.step(city, action))
+        original_pandemic.step(city, action)
         original_pandemic.end_turn()
+        score = -np.sum(original_pandemic.disease_counts) * original_pandemic.outbreak_count + \
+            100 * np.sum(original_pandemic.cure_status)
         pandemic = copy.deepcopy(original_pandemic)
+    print('Final score:', score)
 
     
 if __name__ == "__main__":
