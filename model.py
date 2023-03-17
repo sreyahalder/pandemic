@@ -120,25 +120,26 @@ class PandemicMDP:
             return -100
     
     def cure(self):
+        reward = 0
         colors = np.unique(self.color_map)
         for color in colors:
             if self.cure_status[color] == False:
                 card_indices = [i for i in range(len(self.player_cards)) if self.color_map[self.player_cards[i]] == color]
                 if len(card_indices) >= self.num_cards_to_cure:
-                    print("here")
                     for i in sorted(card_indices, reverse=True)[:2]:
                         self.player_cards.pop(i)
                     self.cure_status[color] = True
                     if all(self.cure_status):
                         print('Congrats, you cured all the diseases!')
                         self.game_over = True
-                        return 1000 # game ends when all cured
+                        reward += 1000 # game ends when all cured
                     else:
-                        return 500
+                        reward += 500
                 else:
-                    return -1000
+                    reward += -1000
             else:
-                return -1000
+                reward += -1000
+        return reward
 
     def step(self, city, action):
         reward = 0
@@ -218,7 +219,7 @@ class PandemicMDP:
 
 def main():
     pandemic = PandemicMDP()
-    random = False
+    random = True
 
     N = {}
     Q = {}
@@ -237,9 +238,10 @@ def main():
             action_idx = np.argmax(np.array([Q.get((original_state, a),0) for a in actions]))
             city, action = return_action(action_idx, actions, move, fly)
             print(f'Currently in {original_pandemic.current_city}. Taking action {action}.')
-            print("Cure statuses: ", pandemic.cure_status)
             
             original_pandemic.step(city, action)
+            if action == "CURE":
+                print("Cure statuses: ", pandemic.cure_status)
             original_pandemic.end_turn()
             score = -np.sum(original_pandemic.disease_counts) * original_pandemic.outbreak_count + \
                 100 * np.sum(original_pandemic.cure_status)
